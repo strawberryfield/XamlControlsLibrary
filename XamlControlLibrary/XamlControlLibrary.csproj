@@ -10,6 +10,10 @@
     <Company>Casasoft</Company>
     <Description>Casasoft Xaml Controls Library</Description>
     <Copyright>copyright (c) 2021 Roberto Ceccarelli - The Strawberry Field</Copyright>
+    <GeneratePackageOnBuild>False</GeneratePackageOnBuild>
+    <PackageProjectUrl>https://github.com/strawberryfield/XamlControlsLibrary</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/strawberryfield/XamlControlsLibrary</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
   </PropertyGroup>
 
 </Project>
