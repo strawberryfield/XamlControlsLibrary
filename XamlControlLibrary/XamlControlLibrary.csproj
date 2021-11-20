@@ -1,0 +1,15 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <UseWPF>true</UseWPF>
+    <RootNamespace>Casasoft.Xaml.Controls</RootNamespace>
+    <AssemblyName>Casasoft.Xaml.Controls</AssemblyName>
+    <Authors>Roberto Ceccarelli - The Strawberry Field</Authors>
+    <Company>Casasoft</Company>
+    <Description>Casasoft Xaml Controls Library</Description>
+    <Copyright>copyright (c) 2021 Roberto Ceccarelli - The Strawberry Field</Copyright>
+  </PropertyGroup>
+
+</Project>
