@@ -31,7 +31,8 @@ If not, see<http://www.gnu.org/licenses/> .
         Title="MainWindow" Height="450" Width="800">
     <Grid>
 
-        <Casasoft:NumericUpDown x:Name="NumericUpDown1" HorizontalAlignment="Left" Margin="220,144,0,0" VerticalAlignment="Top" Width="180" Height="20"/>
+        <Casasoft:NumericUpDown x:Name="NumericUpDown1" HorizontalAlignment="Left" Margin="25,24,0,0" VerticalAlignment="Top" Width="175" Height="20"/>
+        <Casasoft:FileTextBox HorizontalAlignment="Left" Margin="25,64,0,0" VerticalAlignment="Top" Width="375"/>
 
     </Grid>
 </Window>
