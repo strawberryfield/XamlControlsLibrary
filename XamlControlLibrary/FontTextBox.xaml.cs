@@ -47,7 +47,12 @@ namespace Casasoft.Xaml.Controls
 
             if (openFileDialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
-                textBox.Text = openFileDialog.Font.Name;
+                System.Drawing.Font? font = openFileDialog.Font; 
+                textBox.Text = font.Name;
+                if (font.Style != System.Drawing.FontStyle.Regular)
+                {
+                    textBox.Text += " " + font.Style;
+                }
             }
         }
 
