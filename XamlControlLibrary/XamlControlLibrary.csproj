@@ -4,7 +4,8 @@
     <TargetFramework>net6.0-windows</TargetFramework>
     <Nullable>enable</Nullable>
     <UseWPF>true</UseWPF>
-    <RootNamespace>Casasoft.Xaml.Controls</RootNamespace>
+	<UseWindowsForms>true</UseWindowsForms>
+	<RootNamespace>Casasoft.Xaml.Controls</RootNamespace>
     <AssemblyName>Casasoft.Xaml.Controls</AssemblyName>
     <Authors>Roberto Ceccarelli - The Strawberry Field</Authors>
     <Company>Casasoft</Company>
