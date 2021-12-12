@@ -22,48 +22,47 @@
 using System.Windows.Controls;
 using System.Windows.Input;
 
-namespace Casasoft.Xaml.Controls
+namespace Casasoft.Xaml.Controls;
+
+/// <summary>
+/// Interaction logic for FontTextBox.xaml
+/// </summary>
+public partial class FontTextBox : UserControl
 {
-    /// <summary>
-    /// Interaction logic for FontTextBox.xaml
-    /// </summary>
-    public partial class FontTextBox : UserControl
+    public FontTextBox()
     {
-        public FontTextBox()
-        {
-            InitializeComponent();
-        }
+        InitializeComponent();
+    }
 
-        public string Value
-        {
-            get => textBox.Text;
-            set => textBox.Text = value;
-        }
+    public string Value
+    {
+        get => textBox.Text;
+        set => textBox.Text = value;
+    }
 
-        private void openFont()
-        {
-            System.Windows.Forms.FontDialog openFileDialog = new();
-            openFileDialog.FontMustExist = true;
+    private void openFont()
+    {
+        System.Windows.Forms.FontDialog openFileDialog = new();
+        openFileDialog.FontMustExist = true;
 
-            if (openFileDialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+        if (openFileDialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+        {
+            System.Drawing.Font? font = openFileDialog.Font;
+            textBox.Text = font.Name;
+            if (font.Style != System.Drawing.FontStyle.Regular)
             {
-                System.Drawing.Font? font = openFileDialog.Font; 
-                textBox.Text = font.Name;
-                if (font.Style != System.Drawing.FontStyle.Regular)
-                {
-                    textBox.Text += " " + font.Style;
-                }
+                textBox.Text += " " + font.Style;
             }
         }
+    }
 
-        private void textBox_MouseDoubleClick(object sender, MouseButtonEventArgs e)
-        {
-            openFont();
-        }
+    private void textBox_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+    {
+        openFont();
+    }
 
-        private void btnOpen_Click(object sender, System.Windows.RoutedEventArgs e)
-        {
-            openFont();
-        }
+    private void btnOpen_Click(object sender, System.Windows.RoutedEventArgs e)
+    {
+        openFont();
     }
 }
