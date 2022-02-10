@@ -28,15 +28,18 @@ using System.Windows.Input;
 namespace Casasoft.Xaml.Controls;
 
 /// <summary>
-/// Interaction logic for FileTextBox.xaml
+/// Interaction logic for TextEditor.xaml
 /// </summary>
-public partial class FileTextBox : UserControl
+public partial class TextEditor : UserControl
 {
-    public FileTextBox()
+    public TextEditor()
     {
         InitializeComponent();
         OpenFileDialogFilter = "All files (*.*)|*.*";
-        OpenFileDialogTitle = "File";
+        OpenFileDialogTitle = "Load from file";
+        SaveFileDialogFilter = "All files (*.*)|*.*";
+        SaveFileDialogTitle = "Save to file";
+        SaveFileDefaultExt = "txt";
     }
 
     #region properties
@@ -46,8 +49,11 @@ public partial class FileTextBox : UserControl
         set => textBox.Text = value;
     }
 
-    public string OpenFileDialogFilter { get; set; } 
+    public string OpenFileDialogFilter { get; set; }
     public string OpenFileDialogTitle { get; set; }
+    public string SaveFileDialogFilter { get; set; }
+    public string SaveFileDialogTitle { get; set; }
+    public string SaveFileDefaultExt { get; set; }
     #endregion
 
     #region open file
@@ -57,20 +63,18 @@ public partial class FileTextBox : UserControl
         openFileDialog.Filter = OpenFileDialogFilter;
         openFileDialog.Title = OpenFileDialogTitle;
         openFileDialog.Multiselect = false;
-        if(!string.IsNullOrEmpty(textBox.Text))
+        if (!string.IsNullOrEmpty(textBox.Text))
         {
             openFileDialog.InitialDirectory = Path.GetDirectoryName(textBox.Text);
         }
 
         if (openFileDialog.ShowDialog() == true)
         {
-            textBox.Text = openFileDialog.FileName;
+            textBox.Text = File.ReadAllText(openFileDialog.FileName);
         }
     }
 
     private void btnOpen_Click(object sender, RoutedEventArgs e) => openFile();
-
-    private void textBox_MouseDoubleClick(object sender, MouseButtonEventArgs e) => openFile();
     #endregion
 
     #region dragdrop
@@ -96,6 +100,14 @@ public partial class FileTextBox : UserControl
     private void ClickUndo(object sender, RoutedEventArgs args) => textBox.Undo();
     private void ClickRedo(object sender, RoutedEventArgs args) => textBox.Redo();
 
+    private void ClickSelectLine(object sender, RoutedEventArgs args)
+    {
+        int lineIndex = textBox.GetLineIndexFromCharacterIndex(textBox.CaretIndex);
+        int lineStartingCharIndex = textBox.GetCharacterIndexFromLineIndex(lineIndex);
+        int lineLength = textBox.GetLineLength(lineIndex);
+        textBox.Select(lineStartingCharIndex, lineLength);
+    }
+
     private void CxmOpened(object sender, RoutedEventArgs args)
     {
         // Only allow copy/cut if something is selected to copy/cut.
@@ -114,4 +126,5 @@ public partial class FileTextBox : UserControl
     private void ClickSelectFile(object sender, RoutedEventArgs args) => openFile();
 
     #endregion
+
 }
