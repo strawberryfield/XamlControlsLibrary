@@ -1,5 +1,5 @@
 ﻿<!--
-copyright (c) 2021 Roberto Ceccarelli - Casasoft
+copyright (c) 2021-2022 Roberto Ceccarelli - Casasoft
 http://strawberryfield.altervista.org 
 
 This file is part of Casasoft XAML Controls Library
@@ -30,7 +30,57 @@ If not, see<http://www.gnu.org/licenses/> .
              d:DesignHeight="18" d:DesignWidth="118">
     <Grid>
         <DockPanel Margin="0,0,18,0">
-            <TextBox x:Name="textBox" TextWrapping="NoWrap" MouseDoubleClick="textBox_MouseDoubleClick" Drop="textBox_Drop" PreviewDragOver="textBox_PreviewDragOver"/>
+            <TextBox x:Name="textBox" TextWrapping="NoWrap" MouseDoubleClick="textBox_MouseDoubleClick" Drop="textBox_Drop" PreviewDragOver="textBox_PreviewDragOver">
+                <TextBox.ContextMenu>
+                    <ContextMenu Name="cxm" Opened="CxmOpened" >
+                        <MenuItem 
+                            Header="Cut"
+                            Name="cxmItemCut" 
+                            Click="ClickCut" 
+                        />
+                        <MenuItem 
+                            Header="Copy" 
+                            Name="cxmItemCopy"
+                            Click="ClickCopy" 
+                        />
+                        <MenuItem 
+                            Header="Paste"
+                            Name="cxmItemPaste"
+                            Click="ClickPaste" 
+                        />
+                        <Separator/>
+                        <MenuItem 
+                            Header="Select All"
+                            Name="cxmItemSelectAll"
+                            Click="ClickSelectAll" 
+                        />
+                        <Separator/>
+                        <MenuItem 
+                            Header="Undo Last Action"
+                            Name="cxmItemUndo"
+                            Click="ClickUndo" 
+                        />
+                        <MenuItem 
+                            Header="Redo Last Action"
+                            Name="cxmItemRedo"
+                            Click="ClickRedo" 
+                        />
+                        <Separator/>
+                        <MenuItem 
+                            Header="Clear All Text"
+                            Name="cxmItemClear"
+                            Click="ClickClear" 
+                        />
+                        <Separator/>
+                        <MenuItem 
+                            Header="Select file"
+                            Name="cxmItemSelectFile"
+                            Click="ClickSelectFile" 
+                        />
+                    </ContextMenu>
+                </TextBox.ContextMenu>
+
+            </TextBox>
         </DockPanel>
         <Button x:Name="btnOpen" HorizontalAlignment="Right" Click="btnOpen_Click" Width="18">
             <TextBlock TextWrapping="Wrap" Text="&#xE11A;" FontFamily="Segoe MDL2 Assets" FontWeight="Bold" Foreground="#FF616FDC"/>

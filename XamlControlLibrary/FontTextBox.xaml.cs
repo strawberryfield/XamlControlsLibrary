@@ -1,4 +1,4 @@
-﻿// copyright (c) 2021 Roberto Ceccarelli - Casasoft
+﻿// copyright (c) 2021-2022 Roberto Ceccarelli - Casasoft
 // http://strawberryfield.altervista.org 
 // 
 // This file is part of Casasoft XAML Controls Library

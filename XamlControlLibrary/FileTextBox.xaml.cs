@@ -1,4 +1,4 @@
-﻿// copyright (c) 2021 Roberto Ceccarelli - Casasoft
+﻿// copyright (c) 2021-2022 Roberto Ceccarelli - Casasoft
 // http://strawberryfield.altervista.org 
 // 
 // This file is part of Casasoft XAML Controls Library
@@ -20,6 +20,7 @@
 // If not, see <http://www.gnu.org/licenses/>.
 
 using Microsoft.Win32;
+using System;
 using System.IO;
 using System.Windows;
 using System.Windows.Controls;
@@ -68,15 +69,9 @@ public partial class FileTextBox : UserControl
         }
     }
 
-    private void btnOpen_Click(object sender, RoutedEventArgs e)
-    {
-        openFile();
-    }
+    private void btnOpen_Click(object sender, RoutedEventArgs e) => openFile();
 
-    private void textBox_MouseDoubleClick(object sender, MouseButtonEventArgs e)
-    {
-        openFile();
-    }
+    private void textBox_MouseDoubleClick(object sender, MouseButtonEventArgs e) => openFile();
     #endregion
 
     #region dragdrop
@@ -90,9 +85,34 @@ public partial class FileTextBox : UserControl
         }
     }
 
-    private void textBox_PreviewDragOver(object sender, DragEventArgs e)
+    private void textBox_PreviewDragOver(object sender, DragEventArgs e) => e.Handled = true;
+    #endregion
+
+    #region context menu
+    private void ClickPaste(object sender, RoutedEventArgs args) => textBox.Paste();
+    private void ClickCopy(object sender, RoutedEventArgs args) => textBox.Copy();
+    private void ClickCut(object sender, RoutedEventArgs args) => textBox.Cut();
+    private void ClickSelectAll(object sender, RoutedEventArgs args) => textBox.SelectAll();
+    private void ClickClear(object sender, RoutedEventArgs args) => textBox.Clear();
+    private void ClickUndo(object sender, RoutedEventArgs args) => textBox.Undo();
+    private void ClickRedo(object sender, RoutedEventArgs args) => textBox.Redo();
+
+    void CxmOpened(object sender, RoutedEventArgs args)
     {
-        e.Handled = true;
+        // Only allow copy/cut if something is selected to copy/cut.
+        if (textBox.SelectedText == "")
+            cxmItemCopy.IsEnabled = cxmItemCut.IsEnabled = false;
+        else
+            cxmItemCopy.IsEnabled = cxmItemCut.IsEnabled = true;
+
+        // Only allow paste if there is text on the clipboard to paste.
+        if (Clipboard.ContainsText())
+            cxmItemPaste.IsEnabled = true;
+        else
+            cxmItemPaste.IsEnabled = false;
     }
+
+    private void ClickSelectFile(object sender, RoutedEventArgs args) => openFile();
+
     #endregion
 }
