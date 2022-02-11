@@ -29,7 +29,7 @@ If not, see<http://www.gnu.org/licenses/> .
              mc:Ignorable="d" 
              d:DesignHeight="18" d:DesignWidth="118">
     <Grid>
-        <TextBox x:Name="textBox" TextWrapping="NoWrap" Drop="textBox_Drop" PreviewDragOver="textBox_PreviewDragOver">
+        <TextBox x:Name="textBox" TextWrapping="NoWrap" Drop="textBox_Drop" PreviewDragOver="textBox_PreviewDragOver" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" AcceptsReturn="True" >
             <TextBox.ContextMenu>
                 <ContextMenu Name="cxm" Opened="CxmOpened" >
                     <MenuItem 
@@ -80,6 +80,11 @@ If not, see<http://www.gnu.org/licenses/> .
                             Header="Load from file"
                             Name="cxmItemSelectFile"
                             Click="ClickSelectFile" 
+                        />
+                    <MenuItem 
+                            Header="Save to file"
+                            Name="cxmItemSaveFile"
+                            Click="cxmItemSaveFile_Click"
                         />
                 </ContextMenu>
             </TextBox.ContextMenu>

@@ -23,7 +23,6 @@ using Microsoft.Win32;
 using System.IO;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Input;
 
 namespace Casasoft.Xaml.Controls;
 
@@ -49,6 +48,8 @@ public partial class TextEditor : UserControl
         set => textBox.Text = value;
     }
 
+    public string SelectedText => textBox.SelectedText;
+
     public string OpenFileDialogFilter { get; set; }
     public string OpenFileDialogTitle { get; set; }
     public string SaveFileDialogFilter { get; set; }
@@ -57,24 +58,34 @@ public partial class TextEditor : UserControl
     #endregion
 
     #region open file
-    private void openFile()
+    public void OpenFile()
     {
         OpenFileDialog openFileDialog = new();
         openFileDialog.Filter = OpenFileDialogFilter;
         openFileDialog.Title = OpenFileDialogTitle;
         openFileDialog.Multiselect = false;
-        if (!string.IsNullOrEmpty(textBox.Text))
-        {
-            openFileDialog.InitialDirectory = Path.GetDirectoryName(textBox.Text);
-        }
-
         if (openFileDialog.ShowDialog() == true)
         {
             textBox.Text = File.ReadAllText(openFileDialog.FileName);
         }
     }
+    #endregion
 
-    private void btnOpen_Click(object sender, RoutedEventArgs e) => openFile();
+    #region save file
+    public void SaveFile()
+    {
+        SaveFileDialog sd = new();
+        sd.Filter = SaveFileDialogFilter;
+        sd.Title = SaveFileDialogTitle;
+        sd.DefaultExt = SaveFileDefaultExt;
+        sd.AddExtension = true;
+        sd.OverwritePrompt = true;
+        sd.ShowDialog();
+        if (!string.IsNullOrWhiteSpace(sd.FileName))
+        {
+            File.WriteAllText(sd.FileName, textBox.Text);
+        }
+    }
     #endregion
 
     #region dragdrop
@@ -84,7 +95,15 @@ public partial class TextEditor : UserControl
         string[] files = (string[])e.Data.GetData(DataFormats.FileDrop);
         if (files != null && files.Length != 0)
         {
-            tb.Text = files[0];
+            tb.Text = File.ReadAllText(files[0]);
+        }
+        else
+        {
+            string txt = (string)e.Data.GetData(DataFormats.Text);
+            if (string.IsNullOrWhiteSpace(txt))
+            {
+                tb.Text = txt;
+            }
         }
     }
 
@@ -111,20 +130,55 @@ public partial class TextEditor : UserControl
     private void CxmOpened(object sender, RoutedEventArgs args)
     {
         // Only allow copy/cut if something is selected to copy/cut.
-        if (textBox.SelectedText == "")
-            cxmItemCopy.IsEnabled = cxmItemCut.IsEnabled = false;
+        if (string.IsNullOrWhiteSpace(textBox.SelectedText))
+        {
+            cxmItemCopy.IsEnabled = false;
+            cxmItemCut.IsEnabled = false;
+        }
         else
-            cxmItemCopy.IsEnabled = cxmItemCut.IsEnabled = true;
+        {
+            cxmItemCopy.IsEnabled = false;
+            cxmItemCut.IsEnabled = true;
+        }
 
         // Only allow paste if there is text on the clipboard to paste.
         if (Clipboard.ContainsText())
+        {
             cxmItemPaste.IsEnabled = true;
+        }
         else
+        {
             cxmItemPaste.IsEnabled = false;
+        }
     }
 
-    private void ClickSelectFile(object sender, RoutedEventArgs args) => openFile();
-
+    private void ClickSelectFile(object sender, RoutedEventArgs args) => OpenFile();
+    private void cxmItemSaveFile_Click(object sender, RoutedEventArgs e) => SaveFile();
     #endregion
 
+    #region routed methods
+    public void Paste() => textBox.Paste();
+    public void Copy() => textBox.Copy();
+    public void Cut() => textBox.Cut();
+    public void SelectAll() => textBox.SelectAll();
+    public void Clear() => textBox.Clear();
+    public void Undo() => textBox.Undo();
+    public void Redo() => textBox.Redo();
+    #endregion
+
+    #region markup
+    public void AddMarkupToSelection(string beforeStart, string afterEnd)
+    {
+        if (!string.IsNullOrEmpty(textBox.SelectedText))
+        {
+            int position = textBox.SelectionStart;
+            string? replacedText = $"{beforeStart}{textBox.SelectedText}{afterEnd}";
+            textBox.SelectedText = replacedText;
+            textBox.Select(position, replacedText.Length);
+            textBox.Focus();
+        }
+    }
+
+    public void AddTagToSelection(string tag) => AddMarkupToSelection($"<{tag}>", $"</{tag}>");
+    #endregion
 }
