@@ -33,7 +33,26 @@ public partial class PangoTextEditor : UserControl
         InitializeComponent();
     }
 
+    public string Value
+    {
+        get => textBox.Value;
+        set => textBox.Value = value;
+    }
+
     private void btnOpen_Click(object sender, System.Windows.RoutedEventArgs e) => textBox.OpenFile();
 
     private void btnSave_Click(object sender, System.Windows.RoutedEventArgs e) => textBox.SaveFile();
+
+    private void btnNew_Click(object sender, System.Windows.RoutedEventArgs e)
+    {
+        Value = "pango:<span>\n</span>";
+    }
+
+    private void btnUnDo_Click(object sender, System.Windows.RoutedEventArgs e) => textBox.Undo();
+
+    private void btnReDo_Click(object sender, System.Windows.RoutedEventArgs e) => textBox.Redo();
+
+    private void btnBold_Click(object sender, System.Windows.RoutedEventArgs e) => textBox.AddTagToSelection("b");
+
+    private void btnItalic_Click(object sender, System.Windows.RoutedEventArgs e) => textBox.AddTagToSelection("i");
 }

@@ -33,10 +33,21 @@ If not, see<http://www.gnu.org/licenses/> .
             <RowDefinition Height="20"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        <local:TextEditor x:Name="textBox" HorizontalAlignment="Stretch" Margin="0,0,0,0" Grid.Row="1" VerticalAlignment="Stretch"/>
+        <local:TextEditor x:Name="textBox" 
+                          HorizontalAlignment="Stretch" Margin="0,0,0,0" Grid.Row="1" VerticalAlignment="Stretch"
+                          OpenFileDialogTitle = "Load markup from file"
+                          OpenFileDialogFilter = "Pango markup (*.pango)|*.pango|All files (*.*)|*.*"
+                          SaveFileDialogTitle = "Save markup to file"
+                          SaveFileDialogFilter = "Pango markup (*.pango)|*.pango|All files (*.*)|*.*"
+                          SaveFileDefaultExt = "pango" />
         <StackPanel Orientation="Horizontal">
             <Button Content="1" x:Name="btnOpen" FontFamily="Wingdings" Height="18" Width="18" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,0,2,0" Click="btnOpen_Click" FontSize="11" FontWeight="Bold" />
             <Button Content="&#xE105;" x:Name="btnSave" FontFamily="Segoe MDL2 Assets" Height="18" Width="18" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,0,2,0" Click="btnSave_Click" />
+            <Button Content="&#xE160;" x:Name="btnNew" FontFamily="Segoe MDL2 Assets" Height="18" Width="18" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,0,2,0" Click="btnNew_Click" />
+            <Button Content="&#xE10E;" x:Name="btnUnDo" FontFamily="Segoe MDL2 Assets" Height="18" Width="18" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="5,0,2,0" Click="btnUnDo_Click" />
+            <Button Content="&#xE10D;" x:Name="btnReDo" FontFamily="Segoe MDL2 Assets" Height="18" Width="18" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,0,2,0" Click="btnReDo_Click" />
+            <Button Content="B" x:Name="btnBold" FontFamily="Verdana" Height="18" Width="18" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="5,0,2,0" FontWeight="Bold" FontSize="14" Click="btnBold_Click" />
+            <Button Content="I" x:Name="btnItalic" FontFamily="Verdana" Height="18" Width="18" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,0,2,0" FontWeight="Normal" FontSize="14" Click="btnItalic_Click" FontStyle="Italic" />
 
         </StackPanel>
     </Grid>
