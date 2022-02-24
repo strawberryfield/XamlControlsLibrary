@@ -24,32 +24,38 @@ using System.Windows.Controls;
 namespace Casasoft.Xaml.Controls;
 
 /// <summary>
-/// Interaction logic for PangoTextEditor.xaml
+/// Interaction logic for FileTextBoxLabel.xaml
 /// </summary>
-public partial class PangoTextEditor : UserControl
+public partial class FileTextBoxLabel : UserControl
 {
-    public PangoTextEditor()
+    public FileTextBoxLabel()
     {
         InitializeComponent();
     }
 
+    #region properties
     public string Value
     {
-        get => textBox.Value;
-        set => textBox.Value = value;
+        get => fileTextBox.Value;
+        set => fileTextBox.Value = value;
     }
 
-    private void btnOpen_Click(object sender, System.Windows.RoutedEventArgs e) => textBox.OpenFile();
+    public string OpenFileDialogFilter
+    {
+        get => fileTextBox.OpenFileDialogFilter;
+        set => fileTextBox.OpenFileDialogFilter = value;
+    }
 
-    private void btnSave_Click(object sender, System.Windows.RoutedEventArgs e) => textBox.SaveFile();
+    public string OpenFileDialogTitle
+    {
+        get => fileTextBox.OpenFileDialogTitle;
+        set => fileTextBox.OpenFileDialogTitle = value;
+    }
 
-    private void btnNew_Click(object sender, System.Windows.RoutedEventArgs e) => Value = "pango:<span>\n</span>";
-
-    private void btnUnDo_Click(object sender, System.Windows.RoutedEventArgs e) => textBox.Undo();
-
-    private void btnReDo_Click(object sender, System.Windows.RoutedEventArgs e) => textBox.Redo();
-
-    private void btnBold_Click(object sender, System.Windows.RoutedEventArgs e) => textBox.AddTagToSelection("b");
-
-    private void btnItalic_Click(object sender, System.Windows.RoutedEventArgs e) => textBox.AddTagToSelection("i");
+    public string? Caption
+    {
+        get => label.Content.ToString();
+        set => label.Content = value;
+    }
+    #endregion
 }
