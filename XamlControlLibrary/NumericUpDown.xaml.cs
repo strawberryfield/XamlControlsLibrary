@@ -51,6 +51,12 @@ public partial class NumericUpDown : UserControl
     public int MinValue { get; set; }
     public int MaxValue { get; set; }
     public int Step { get; set; }
+
+    public ContextMenu TBContextMenu
+    {
+        get => textBox.ContextMenu;
+        set => textBox.ContextMenu = value; 
+    }
     #endregion
 
     #region buttons events handling
