@@ -33,9 +33,7 @@ If not, see<http://www.gnu.org/licenses/> .
 
         <Casasoft:NumericUpDown x:Name="NumericUpDown1" HorizontalAlignment="Left" Margin="25,39,0,0" VerticalAlignment="Top" Width="175" Height="20"/>
         <Casasoft:FileTextBox HorizontalAlignment="Left" Margin="25,121,0,0" VerticalAlignment="Top" Width="375"/>
-        <Casasoft:FontTextBox HorizontalAlignment="Left" Margin="25,199,0,0" VerticalAlignment="Top" Width="375"/>
         <Label Content="NumericUpDown" HorizontalAlignment="Left" Margin="25,13,0,0" VerticalAlignment="Top" RenderTransformOrigin="-2.895,-0.191"/>
-        <Label Content="FontTextBox" HorizontalAlignment="Left" Margin="25,168,0,0" VerticalAlignment="Top" RenderTransformOrigin="-2.895,-0.191"/>
         <Casasoft:PangoTextEditor HorizontalAlignment="Left" Margin="25,269,0,0" VerticalAlignment="Top" Width="745" Height="115"/>
         <Label Content="TextEditor" HorizontalAlignment="Left" Margin="25,238,0,0" VerticalAlignment="Top" RenderTransformOrigin="-2.895,-0.191"/>
         <Casasoft:FileTextBoxLabel Caption="FileTextBoxLabel" HorizontalAlignment="Left" Margin="25,79,0,0" VerticalAlignment="Top" Width="375" Height="37"/>

@@ -4,21 +4,31 @@
     <TargetFramework>net6.0-windows</TargetFramework>
     <Nullable>enable</Nullable>
     <UseWPF>true</UseWPF>
-	<UseWindowsForms>true</UseWindowsForms>
 	<RootNamespace>Casasoft.Xaml.Controls</RootNamespace>
     <AssemblyName>Casasoft.Xaml.Controls</AssemblyName>
     <Authors>Roberto Ceccarelli - The Strawberry Field</Authors>
     <Company>Casasoft</Company>
     <Description>Casasoft Xaml Controls Library</Description>
     <Copyright>copyright (c) 2021 Roberto Ceccarelli - The Strawberry Field</Copyright>
-    <GeneratePackageOnBuild>False</GeneratePackageOnBuild>
+    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
     <PackageProjectUrl>https://github.com/strawberryfield/XamlControlsLibrary</PackageProjectUrl>
     <RepositoryUrl>https://github.com/strawberryfield/XamlControlsLibrary</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
-    <PackageLicenseFile>C:\projects\XamlControlLibrary\LICENSE</PackageLicenseFile>
+    <PackageLicenseFile>LICENSE</PackageLicenseFile>
     <PackageRequireLicenseAcceptance>True</PackageRequireLicenseAcceptance>
     <PackageReadmeFile>README.md</PackageReadmeFile>
+    <GenerateDocumentationFile>True</GenerateDocumentationFile>
+    <Version>22.04.13</Version>
+    <PackageTags>xaml;wpf;controls</PackageTags>
   </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="FontTextBox.xaml.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Page Remove="FontTextBox.xaml" />
+  </ItemGroup>
 
   <ItemGroup>
     <None Include="..\README.md">
@@ -26,5 +36,11 @@
       <PackagePath>\</PackagePath>
     </None>
   </ItemGroup>
+	<ItemGroup>
+		<None Include="..\LICENSE">
+			<Pack>True</Pack>
+			<PackagePath>\</PackagePath>
+		</None>
+	</ItemGroup>
 
 </Project>
