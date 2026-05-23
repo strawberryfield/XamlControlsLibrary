@@ -1,4 +1,4 @@
-﻿// copyright (c) 2021-2022 Roberto Ceccarelli - Casasoft
+﻿// copyright (c) 2021-2026 Roberto Ceccarelli - Casasoft
 // http://strawberryfield.altervista.org 
 // 
 // This file is part of Casasoft XAML Controls Library
@@ -24,32 +24,71 @@ using System.Windows.Controls;
 namespace Casasoft.Xaml.Controls;
 
 /// <summary>
-/// Interaction logic for PangoTextEditor.xaml
+/// A small editor control tailored for editing Pango markup.
+/// 
+/// This control is a thin wrapper around an inner text editor control (named
+/// <c>textBox</c>) and exposes common editing actions (open/save/new/undo/redo)
+/// and simple markup helpers (bold/italic) which delegate to the inner editor.
 /// </summary>
 public partial class PangoTextEditor : UserControl
 {
+    /// <summary>
+    /// Initializes a new instance of the <see cref="PangoTextEditor"/> control
+    /// and loads the component XAML.
+    /// </summary>
     public PangoTextEditor()
     {
         InitializeComponent();
     }
 
+    /// <summary>
+    /// Gets or sets the textual content of the embedded editor.
+    /// </summary>
+    /// <remarks>
+    /// This forwards to the inner control's <c>Value</c> property.
+    /// Use this property to read or programmatically set the current Pango markup.
+    /// </remarks>
     public string Value
     {
         get => textBox.Value;
         set => textBox.Value = value;
     }
 
+    /// <summary>
+    /// Handler for the Open button click. Opens a file using the embedded editor's
+    /// file-open logic.
+    /// </summary>
     private void btnOpen_Click(object sender, System.Windows.RoutedEventArgs e) => textBox.OpenFile();
 
+    /// <summary>
+    /// Handler for the Save button click. Saves the current content using the
+    /// embedded editor's file-save logic.
+    /// </summary>
     private void btnSave_Click(object sender, System.Windows.RoutedEventArgs e) => textBox.SaveFile();
 
+    /// <summary>
+    /// Handler for the New button click. Resets the editor content to a minimal
+    /// Pango template.
+    /// </summary>
     private void btnNew_Click(object sender, System.Windows.RoutedEventArgs e) => Value = "pango:<span>\n</span>";
 
+    /// <summary>
+    /// Handler for the Undo button click. Requests an undo operation on the inner editor.
+    /// </summary>
     private void btnUnDo_Click(object sender, System.Windows.RoutedEventArgs e) => textBox.Undo();
 
+    /// <summary>
+    /// Handler for the Redo button click. Requests a redo operation on the inner editor.
+    /// </summary>
     private void btnReDo_Click(object sender, System.Windows.RoutedEventArgs e) => textBox.Redo();
 
+    /// <summary>
+    /// Handler for the Bold button click. Wraps the current selection with a &lt;b&gt; tag.
+    /// </summary>
     private void btnBold_Click(object sender, System.Windows.RoutedEventArgs e) => textBox.AddTagToSelection("b");
 
+    /// <summary>
+    /// Handler for the Italic button click. Wraps the current selection with an &lt;i&gt; tag.
+    /// </summary>
     private void btnItalic_Click(object sender, System.Windows.RoutedEventArgs e) => textBox.AddTagToSelection("i");
 }

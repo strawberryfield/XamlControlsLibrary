@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFrameworks>net6.0-windows;net8.0-windows</TargetFrameworks>
+    <TargetFrameworks>net10.0-windows;net8.0-windows</TargetFrameworks>
     <Nullable>enable</Nullable>
     <UseWPF>true</UseWPF>
 	<RootNamespace>Casasoft.Xaml.Controls</RootNamespace>
@@ -9,7 +9,7 @@
     <Authors>Roberto Ceccarelli - The Strawberry Field</Authors>
     <Company>Casasoft</Company>
     <Description>Casasoft Xaml Controls Library</Description>
-    <Copyright>copyright (c) 2021 Roberto Ceccarelli - The Strawberry Field</Copyright>
+    <Copyright>copyright (c) 2021-2026 Roberto Ceccarelli - The Strawberry Field</Copyright>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
     <PackageProjectUrl>https://github.com/strawberryfield/XamlControlsLibrary</PackageProjectUrl>
     <RepositoryUrl>https://github.com/strawberryfield/XamlControlsLibrary</RepositoryUrl>
@@ -18,7 +18,7 @@
     <PackageRequireLicenseAcceptance>True</PackageRequireLicenseAcceptance>
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <GenerateDocumentationFile>True</GenerateDocumentationFile>
-    <Version>23.12.17</Version>
+    <Version>26.5.23</Version>
     <PackageTags>xaml;wpf;controls</PackageTags>
   </PropertyGroup>
 
