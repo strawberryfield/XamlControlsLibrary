@@ -7,7 +7,7 @@
 A collection of ready-to-use WPF UserControls that fill the gaps left by the standard toolkit — file pickers, numeric inputs, image viewers and text editors, all wired up and ready to drop into your project.
 
 **Repository:** [github.com/strawberryfield/XamlControlsLibrary](https://github.com/strawberryfield/XamlControlsLibrary)  
-**Author:** Roberto Ceccarelli — [The Strawberry Field](http://strawberryfield.altervista.org)
+**Author:** Roberto Ceccarelli — [The Strawberry Field](http://strawberryfield.altervista.org/index.php?lang=en)
 
 ---
 
